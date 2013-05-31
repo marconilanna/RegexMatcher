@@ -3,6 +3,17 @@ RegexMatcher
 
 A simple recursive regular expression matcher written in Scala.
 
+The following subset of regex operators is supported:
+
+	.   matches any single character
+	^   matches the beginning of the input string
+	$   matches the end of the input string
+	*   matches zero or more occurrences of the previous character
+	+   matches one or more occurrences of the previous character
+	?   matches zero or one occurrences of the previous character
+
+This is just a learning exercise and is not in any capacity intended to be used in production.
+
 License
 -------
 
