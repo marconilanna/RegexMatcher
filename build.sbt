@@ -15,7 +15,7 @@ javaSource in Test <<= baseDirectory(_ / "test")
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature", "-Xlint")
 
 libraryDependencies ++= Seq(
-	  "org.scalatest" %% "scalatest" % "latest.release" % "test"
+    "org.scalatest" %% "scalatest" % "latest.release" % "test"
 )
 
 showSuccess := true

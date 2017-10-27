@@ -18,117 +18,117 @@ package test.matcher
 import matcher.RegexMatcher
 
 class RegexMatcherTest extends org.scalatest.FunSuite {
-	test("Simple matches") {
-		assert(RegexMatcher("", ""))
-		assert(RegexMatcher("", "a"))
-		assert(RegexMatcher("a", "a"))
-		assert(RegexMatcher("ab", "ab"))
-		assert(RegexMatcher("ab", "abc"))
-		assert(RegexMatcher("ab", "zab"))
-		assert(RegexMatcher("ab", "zabc"))
-		assert(RegexMatcher("ab", "aabc"))
-	}
+  test("Simple matches") {
+    assert(RegexMatcher("", ""))
+    assert(RegexMatcher("", "a"))
+    assert(RegexMatcher("a", "a"))
+    assert(RegexMatcher("ab", "ab"))
+    assert(RegexMatcher("ab", "abc"))
+    assert(RegexMatcher("ab", "zab"))
+    assert(RegexMatcher("ab", "zabc"))
+    assert(RegexMatcher("ab", "aabc"))
+  }
 
-	test("Non-matches") {
-		assert(!RegexMatcher("a", ""))
-		assert(!RegexMatcher("a", "b"))
-		assert(!RegexMatcher("ab", "ba"))
-		assert(!RegexMatcher("ab", "bac"))
-		assert(!RegexMatcher("ab", "zba"))
-		assert(!RegexMatcher("ab", "zbac"))
-		assert(!RegexMatcher("ab", "baac"))
-	}
+  test("Non-matches") {
+    assert(!RegexMatcher("a", ""))
+    assert(!RegexMatcher("a", "b"))
+    assert(!RegexMatcher("ab", "ba"))
+    assert(!RegexMatcher("ab", "bac"))
+    assert(!RegexMatcher("ab", "zba"))
+    assert(!RegexMatcher("ab", "zbac"))
+    assert(!RegexMatcher("ab", "baac"))
+  }
 
-	test("Start anchor") {
-		assert(RegexMatcher("^", ""))
-		assert(RegexMatcher("^a", "a"))
-		assert(RegexMatcher("^ab", "ab"))
-		assert(RegexMatcher("^ab", "abc"))
+  test("Start anchor") {
+    assert(RegexMatcher("^", ""))
+    assert(RegexMatcher("^a", "a"))
+    assert(RegexMatcher("^ab", "ab"))
+    assert(RegexMatcher("^ab", "abc"))
 
-		assert(!RegexMatcher("^a", ""))
-		assert(!RegexMatcher("^a", "za"))
-	}
+    assert(!RegexMatcher("^a", ""))
+    assert(!RegexMatcher("^a", "za"))
+  }
 
-	test("End anchor") {
-		assert(RegexMatcher("$", ""))
-		assert(RegexMatcher("a$", "a"))
-		assert(RegexMatcher("a$", "za"))
-		assert(RegexMatcher("ab$", "ab"))
-		assert(RegexMatcher("ab$", "zab"))
+  test("End anchor") {
+    assert(RegexMatcher("$", ""))
+    assert(RegexMatcher("a$", "a"))
+    assert(RegexMatcher("a$", "za"))
+    assert(RegexMatcher("ab$", "ab"))
+    assert(RegexMatcher("ab$", "zab"))
 
-		assert(!RegexMatcher("a$", ""))
-		assert(!RegexMatcher("a$", "ab"))
-	}
+    assert(!RegexMatcher("a$", ""))
+    assert(!RegexMatcher("a$", "ab"))
+  }
 
-	test("Dot") {
-		assert(RegexMatcher(".", "."))
-		assert(RegexMatcher(".", "a"))
-		assert(RegexMatcher(".", "ab"))
-		assert(RegexMatcher("a.", "ab"))
-		assert(RegexMatcher(".b", "ab"))
-		assert(RegexMatcher("a.c", "abc"))
+  test("Dot") {
+    assert(RegexMatcher(".", "."))
+    assert(RegexMatcher(".", "a"))
+    assert(RegexMatcher(".", "ab"))
+    assert(RegexMatcher("a.", "ab"))
+    assert(RegexMatcher(".b", "ab"))
+    assert(RegexMatcher("a.c", "abc"))
 
-		assert(!RegexMatcher(".", ""))
-		assert(!RegexMatcher("a.", "a"))
-		assert(!RegexMatcher(".a", "a"))
-	}
+    assert(!RegexMatcher(".", ""))
+    assert(!RegexMatcher("a.", "a"))
+    assert(!RegexMatcher(".a", "a"))
+  }
 
-	test("Question mark") {
-		assert(RegexMatcher("a?", ""))
-		assert(RegexMatcher("a?", "a"))
-		assert(RegexMatcher("a?", "b"))
-		assert(RegexMatcher("a?", "aa"))
-		assert(RegexMatcher("a?", "za"))
-		assert(RegexMatcher("a?", "zaa"))
-		assert(RegexMatcher("a?b", "ab"))
-		assert(RegexMatcher("a?b", "b"))
-		assert(RegexMatcher("a?b", "aab"))
-		assert(RegexMatcher("ab?c", "abc"))
-		assert(RegexMatcher("ab?c", "ac"))
-		assert(RegexMatcher("ab?c", "aabc"))
+  test("Question mark") {
+    assert(RegexMatcher("a?", ""))
+    assert(RegexMatcher("a?", "a"))
+    assert(RegexMatcher("a?", "b"))
+    assert(RegexMatcher("a?", "aa"))
+    assert(RegexMatcher("a?", "za"))
+    assert(RegexMatcher("a?", "zaa"))
+    assert(RegexMatcher("a?b", "ab"))
+    assert(RegexMatcher("a?b", "b"))
+    assert(RegexMatcher("a?b", "aab"))
+    assert(RegexMatcher("ab?c", "abc"))
+    assert(RegexMatcher("ab?c", "ac"))
+    assert(RegexMatcher("ab?c", "aabc"))
 
-		assert(!RegexMatcher("ab?c", "abbc"))
-	}
+    assert(!RegexMatcher("ab?c", "abbc"))
+  }
 
-	test("Plus") {
-		assert(RegexMatcher("a+", "a"))
-		assert(RegexMatcher("a+", "aa"))
-		assert(RegexMatcher("a+", "za"))
-		assert(RegexMatcher("a+", "zaa"))
-		assert(RegexMatcher("a+b", "ab"))
-		assert(RegexMatcher("a+b", "aab"))
-		assert(RegexMatcher("ab+c", "abc"))
-		assert(RegexMatcher("ab+c", "aabc"))
-		assert(RegexMatcher("ab+c", "abbbc"))
+  test("Plus") {
+    assert(RegexMatcher("a+", "a"))
+    assert(RegexMatcher("a+", "aa"))
+    assert(RegexMatcher("a+", "za"))
+    assert(RegexMatcher("a+", "zaa"))
+    assert(RegexMatcher("a+b", "ab"))
+    assert(RegexMatcher("a+b", "aab"))
+    assert(RegexMatcher("ab+c", "abc"))
+    assert(RegexMatcher("ab+c", "aabc"))
+    assert(RegexMatcher("ab+c", "abbbc"))
 
-		assert(!RegexMatcher("a+", ""))
-		assert(!RegexMatcher("a+", "z"))
-		assert(!RegexMatcher("a+b", "b"))
-	}
+    assert(!RegexMatcher("a+", ""))
+    assert(!RegexMatcher("a+", "z"))
+    assert(!RegexMatcher("a+b", "b"))
+  }
 
-	test("Star") {
-		assert(RegexMatcher("a*", ""))
-		assert(RegexMatcher("a*", "a"))
-		assert(RegexMatcher("a*", "aa"))
-		assert(RegexMatcher("a*", "z"))
-		assert(RegexMatcher("a*", "za"))
-		assert(RegexMatcher("a*", "zaa"))
-		assert(RegexMatcher("a*b", "b"))
-		assert(RegexMatcher("a*b", "ab"))
-		assert(RegexMatcher("a*b", "aab"))
-		assert(RegexMatcher("ab*c", "abc"))
-		assert(RegexMatcher("ab*c", "aabc"))
-		assert(RegexMatcher("ab*c", "abbbc"))
-	}
+  test("Star") {
+    assert(RegexMatcher("a*", ""))
+    assert(RegexMatcher("a*", "a"))
+    assert(RegexMatcher("a*", "aa"))
+    assert(RegexMatcher("a*", "z"))
+    assert(RegexMatcher("a*", "za"))
+    assert(RegexMatcher("a*", "zaa"))
+    assert(RegexMatcher("a*b", "b"))
+    assert(RegexMatcher("a*b", "ab"))
+    assert(RegexMatcher("a*b", "aab"))
+    assert(RegexMatcher("ab*c", "abc"))
+    assert(RegexMatcher("ab*c", "aabc"))
+    assert(RegexMatcher("ab*c", "abbbc"))
+  }
 
-	test("Complex matches") {
-		assert(RegexMatcher("^.*$", ""))
-		assert(RegexMatcher("^.*$", "a"))
-		assert(RegexMatcher("^.*$", "ab"))
-		assert(RegexMatcher("^a*$", "a"))
-		assert(RegexMatcher("^a*$", "aa"))
-		assert(RegexMatcher("a.*c", "zaabcd"))
+  test("Complex matches") {
+    assert(RegexMatcher("^.*$", ""))
+    assert(RegexMatcher("^.*$", "a"))
+    assert(RegexMatcher("^.*$", "ab"))
+    assert(RegexMatcher("^a*$", "a"))
+    assert(RegexMatcher("^a*$", "aa"))
+    assert(RegexMatcher("a.*c", "zaabcd"))
 
-		assert(!RegexMatcher("^a*$", "ab"))
-	}
+    assert(!RegexMatcher("^a*$", "ab"))
+  }
 }
